@@ -1477,7 +1477,7 @@ class WP_Push_Syndication_Server {
 
 		// upgrade to 2.1
 		if ( version_compare( $this->version, '2.0', '<=' ) ) {
-			$inserted_posts_by_site = $wpdb->get_col( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = 'syn_inserted_posts'" );
+			$inserted_posts_by_site = $wpdb->get_col( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = 'syn_inserted_posts' LIMIT 100" );
 			foreach ( $inserted_posts_by_site as $site_id ) {
 				$inserted_posts = get_post_meta( $site_id, 'syn_inserted_posts', true );
 
